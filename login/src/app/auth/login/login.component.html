@@ -1,14 +1,14 @@
-<form [formGroup]="getLoginFormGroup()">
+<form [formGroup]="getLoginForm()">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Email</label>
-      <input formControlName="emailAtribute" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="emailAtribute">
     </div>
 
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input formControlName="passwordAtribute" type="password" class="form-control" id="exampleInputPassword1">
+      <input type="password" class="form-control" id="exampleInputPassword1" formControlName="passwordAtribute">
     </div>
     
-    <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+    <button type="submit" class="btn btn-primary" (click)="doLogin()">Iniciar Sesion</button>
 
 </form>

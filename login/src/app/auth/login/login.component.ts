@@ -1,24 +1,37 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms'; //Esto ya esta injectado en Angular
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { accountModelLogin } from './model/AccountModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
-  private formBuilder: FormBuilder;
-  
-  //Estamos traendo la dependencia que ya esta injectado en Angular
-  constructor(formBuilder: FormBuilder){
-    this.formBuilder = formBuilder;
+  private loginForm: FormGroup;
+  private routerService: Router;
+
+  constructor(formBuilder: FormBuilder, routerService: Router) {
+    this.loginForm = formBuilder.group(accountModelLogin);
+    this.routerService = routerService;
   }
-  
-  getLoginFormGroup(): FormGroup | any {
-    return this.formBuilder.group(accountModelLogin);
+
+  getLoginForm(): FormGroup {
+    return this.loginForm;
+  }
+
+  doLogin(): void {
+    if (this.loginForm.valid) {
+      alert("Llamar al servicio de login");
+      this.routerService.navigateByUrl('/inicio');
+      this.loginForm.reset();
+    } else {
+      alert("Error al ingresar los datos");
+    }
   }
 }
