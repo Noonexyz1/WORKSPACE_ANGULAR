@@ -21,6 +21,14 @@ export class LoginComponent {
     this.routerService = routerService;
   }
 
+  
+  getEmailAtribute(): any {
+    return this.loginForm.controls['emailAtribute'];
+  }
+  getPasswordAtribute(): any {
+    return this.loginForm.controls['passwordAtribute'];
+  }
+
   getLoginForm(): FormGroup {
     return this.loginForm;
   }

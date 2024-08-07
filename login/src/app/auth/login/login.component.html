@@ -1,14 +1,26 @@
 <form [formGroup]="getLoginForm()">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="emailAtribute">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="emailAtribute">
+    <div *ngIf="getEmailAtribute().invalid && (getEmailAtribute().dirty || getEmailAtribute().touched)" class="text-danger">
+      <div *ngIf="getEmailAtribute().errors?.['required']">
+        El Email es requerido.
+      </div>
+      <div *ngIf="getEmailAtribute().errors?.['email']">
+        El Email debe tener un formato válido.
+      </div>
     </div>
+  </div>
 
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" formControlName="passwordAtribute">
-    </div>
-    
-    <button type="submit" class="btn btn-primary" (click)="doLogin()">Iniciar Sesion</button>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" formControlName="passwordAtribute">
+    <div *ngIf="getPasswordAtribute().invalid && (getPasswordAtribute().dirty || getPasswordAtribute().touched)" class="text-danger">
+      <div *ngIf="getPasswordAtribute().errors?.['required']">
+          El Password es requerido.
+      </div>
+    </div> 
+  </div>
 
+  <button type="submit" class="btn btn-primary" (click)="doLogin()">Iniciar Sesion</button>
 </form>
