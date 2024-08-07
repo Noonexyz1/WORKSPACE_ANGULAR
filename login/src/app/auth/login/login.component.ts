@@ -40,7 +40,11 @@ export class LoginComponent {
   doLogin(): void {
     if (this.loginForm.valid) {
       alert("Llamar al servicio de login");
-      this.loginService.login(this.loginForm.value as LoginRequest);
+      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
+        next: (userData) => {console.log(userData)},
+        error: (errorData) => {console.error(errorData)},
+        complete: () => {console.info("Login Completo")}
+      });
       this.routerService.navigateByUrl('/inicio');
       this.loginForm.reset();
     } else {
