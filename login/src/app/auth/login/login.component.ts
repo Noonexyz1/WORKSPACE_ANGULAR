@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { accountModelLogin } from './model/AccountModel';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/auth/login.service';
+import { LoginRequest } from '../../services/auth/loginRequest';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +17,15 @@ export class LoginComponent {
 
   private loginForm: FormGroup;
   private routerService: Router;
+  private loginService: LoginService;
 
-  constructor(formBuilder: FormBuilder, routerService: Router) {
+  constructor(formBuilder: FormBuilder, routerService: Router, loginService: LoginService) {
     this.loginForm = formBuilder.group(accountModelLogin);
     this.routerService = routerService;
+    this.loginService = loginService;
   }
 
-  
+
   getEmailAtribute(): any {
     return this.loginForm.controls['emailAtribute'];
   }
@@ -36,6 +40,7 @@ export class LoginComponent {
   doLogin(): void {
     if (this.loginForm.valid) {
       alert("Llamar al servicio de login");
+      this.loginService.login(this.loginForm.value as LoginRequest);
       this.routerService.navigateByUrl('/inicio');
       this.loginForm.reset();
     } else {
