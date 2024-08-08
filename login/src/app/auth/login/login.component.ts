@@ -15,6 +15,8 @@ import { LoginRequest } from '../../services/auth/loginRequest';
 })
 export class LoginComponent {
 
+  loginError: string = "";
+
   private loginForm: FormGroup;
   private routerService: Router;
   private loginService: LoginService;
@@ -42,11 +44,16 @@ export class LoginComponent {
       alert("Llamar al servicio de login");
       this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
         next: (userData) => {console.log(userData)},
-        error: (errorData) => {console.error(errorData)},
-        complete: () => {console.info("Login Completo")}
+        error: (errorData) => {
+          console.error(errorData);
+          this.loginError = errorData
+        },
+        complete: () => {
+          console.info("Login Completo")
+          this.routerService.navigateByUrl('/inicio');
+          this.loginForm.reset();
+        }
       });
-      this.routerService.navigateByUrl('/inicio');
-      this.loginForm.reset();
     } else {
       alert("Error al ingresar los datos");
     }

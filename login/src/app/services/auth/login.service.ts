@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoginRequest } from './loginRequest';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { User } from './user';
 
 @Injectable({
@@ -16,6 +16,15 @@ export class LoginService {
   }
 
   login(crendentials: LoginRequest): Observable<User>{
-    return this.http.get<User>('/data.json');
+    return this.http.get<User>('/data.json').pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<any> {
+    if(error.status === 0){
+      console.error('Se ha producido un error ', error.error);
+    } else {
+      console.error('Backend retorna el codigo de estado ', error.status, error.error);
+    }
+    return throwError(() => new Error('Algo ha fallado, porfavor intente nuevamente'));
   }
 }
