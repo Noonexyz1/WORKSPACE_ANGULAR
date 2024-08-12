@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginServiceImpl } from '../../../impl/LoginServiceImpl';
 
 @Component({
   selector: 'app-login',
@@ -9,4 +10,13 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  private loginServiceImpl: LoginServiceImpl;
+
+  constructor(loginServiceImpl: LoginServiceImpl){
+    this.loginServiceImpl = loginServiceImpl;
+  }
+
+  doLogin(): void {
+    this.loginServiceImpl.doLoginService();
+  }
 }
