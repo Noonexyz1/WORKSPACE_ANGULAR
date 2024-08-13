@@ -11,8 +11,7 @@ import { FooterComponent } from '../components/footer/footer.component';
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
-  //Este componente que hace de layout, deberia tener la capacidad de ofrecer 
-  //comunicacion RxJS entre todos los componente que esten dentro de este layout
-  //Por lo tanto, el layout deberia tener un servicio de comunicacion que los demas 
+  //Este componente que hace de layout, deberia tener un Servicio (config) para ofrecer 
+  //comunicacion RxJS entre todos los componente que esten dentro de este layout para que los demas 
   //componentes puedan usarlo para comunicarse
 }
