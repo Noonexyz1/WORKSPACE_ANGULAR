@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../../model/user';
+import { User } from '../model/user';
 
 @Injectable({providedIn: 'root'})
 export class ComunicacionService {
@@ -9,12 +9,19 @@ export class ComunicacionService {
   private currentUserData: BehaviorSubject<User> = new BehaviorSubject<User>({id:0, email:''});
 
   constructor() { }
-  
-  getUserLoginOn(): Observable<boolean>{
+
+
+  getUserLoginOnObservable(): Observable<boolean>{
     return this.currentUserLoginOn.asObservable();
   }
+  publicarUserLoginOn(valor: any): void {
+    this.currentUserLoginOn.next(valor);
+  }
   
-  getCurrentUserData():Observable<User>{
+  getCurrentUserDataObservable():Observable<User>{
     return this.currentUserData.asObservable();
+  }
+  publicarCurrentUserData(valor: any): void {
+    this.currentUserData.next(valor);
   }
 }

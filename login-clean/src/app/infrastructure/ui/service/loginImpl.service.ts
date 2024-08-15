@@ -1,12 +1,12 @@
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { LoginService } from "../../application/port/LoginService";
+import { LoginAbstract } from "../../../application/port/LoginAbstract";
 import { Router } from "@angular/router";
 import { accountModelLogin } from "../model/AccountModel";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 
 @Injectable({providedIn: "root"})
-export class LoginServiceImpl implements LoginService {
+export class LoginImplService implements LoginAbstract {
 
     private loginForm: FormGroup;
     private routerService: Router;
@@ -16,21 +16,23 @@ export class LoginServiceImpl implements LoginService {
         this.routerService = routerService;
     }
 
-    
+    //Aqui tiene que ir toda mi implementacion
+
     //@Override
-    doLoginService(): void {
-        throw new Error("Method not implemented.");
+    doLoginAbstract(): void {
+        console.log("doLoginAbstract(): void");
     }
     //@Override
-    lanzarExcepcionService(): void {
-        throw new Error("Method not implemented.");
+    lanzarExcepcionAbstract(): void {
+        console.log("lanzarExcepcionAbstract(): void");
     }
     //@Override
-    getObserbableService(): Observable<any> {
-        throw new Error("Method not implemented.");
+    getObserbableAbstract(): Observable<any> {
+        console.log("getObserbableAbstract(): Observable<any>");
+        return new Observable();
     }
     //@Override
-    subscribirseService(): void {
-        throw new Error("Method not implemented.");
+    subscribirseAbstract(): void {
+        console.log("subscribirseAbstract(): void");
     }
 }
