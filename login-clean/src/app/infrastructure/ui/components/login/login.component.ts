@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { LoginImplService } from '../../service/loginImpl.service';
-import { ComunicacionService } from '../../service/comunicacion.service';
+import { Login } from '../../../../application/port/Login';
+import { LoginAbstractImpl } from '../../impl/LoginAbstractImpl';
+import { LoginImpl } from '../../../../application/impl/LoginImpl';
 
 @Component({
   selector: 'app-login',
@@ -11,16 +12,13 @@ import { ComunicacionService } from '../../service/comunicacion.service';
 })
 export class LoginComponent {
 
-  private loginImplService: LoginImplService;
-  private comunicacionService: ComunicacionService;
+  private loginImplelent: Login;
 
-  constructor(loginImplService: LoginImplService, comunicacionService: ComunicacionService){
-    this.loginImplService = loginImplService;
-    this.comunicacionService = comunicacionService;
+  constructor(loginAbstract: LoginAbstractImpl){
+    this.loginImplelent = new LoginImpl(loginAbstract);
   }
 
   doLogin(): void {
-    this.loginImplService.doLoginAbstract();
-    this.comunicacionService.getUserLoginOnObservable();
+    this.loginImplelent.doLogin();
   }
 }
