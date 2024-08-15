@@ -20,7 +20,7 @@ export class LoginComponent {
   }
 
   doLogin(): void {
-    this.loginImplService.doLoginService();
+    this.loginImplService.doLoginAbstract();
     this.comunicacionService.getUserLoginOnObservable();
   }
 }
