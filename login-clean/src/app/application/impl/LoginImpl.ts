@@ -1,14 +1,17 @@
 import { Observable } from "rxjs";
 import { LoginAbstract } from "../port/LoginAbstract";
 import { Login } from "../port/Login";
+import { LoginObserAbstract } from "../port/LoginObserAbstract";
 
 //Mi Adapter
 export class LoginImpl implements Login {
     
     private loginAbstract: LoginAbstract;
+    private loginObserAbstract: LoginObserAbstract
 
-    constructor(loginAbstract: LoginAbstract){
+    constructor(loginAbstract: LoginAbstract, loginObserAbstract: LoginObserAbstract){
         this.loginAbstract = loginAbstract;
+        this.loginObserAbstract = loginObserAbstract;
     }
 
 
@@ -22,10 +25,10 @@ export class LoginImpl implements Login {
     }
     //@Override
     getObserbable(): Observable<any> {
-        return this.loginAbstract.getObserbableAbstract();
+        return this.loginObserAbstract.getObserbableAbstract();
     }
     //@Override
     subscribirse(): void {
-        this.loginAbstract.subscribirseAbstract();
+        this.loginObserAbstract.subscribirseAbstract();
     }
 }

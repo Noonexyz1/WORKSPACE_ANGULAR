@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 @Injectable({providedIn: "root"})
 export class LoginAbstractImpl implements LoginAbstract {
 
-    constructor() { }
+    constructor() {}
 
     //@Override
     doLoginAbstract(): void {
@@ -17,15 +17,5 @@ export class LoginAbstractImpl implements LoginAbstract {
         //Aqui tiene que ir toda mi implementacion
         console.log("lanzarExcepcionAbstract(): void");
     }
-    //@Override
-    getObserbableAbstract(): Observable<any> {
-        //Aqui tiene que ir toda mi implementacion
-        console.log("getObserbableAbstract(): Observable<any>");
-        return new Observable();
-    }
-    //@Override
-    subscribirseAbstract(): void {
-        //Aqui tiene que ir toda mi implementacion
-        console.log("subscribirseAbstract(): void");
-    }
+
 }
