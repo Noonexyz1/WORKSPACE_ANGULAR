@@ -1,6 +1,4 @@
-import { Observable } from "rxjs";
-
 export interface LoginObserAbstract {
-    getObserbableAbstract(): Observable<any>;
+    getObserbableAbstract(): any;
     subscribirseAbstract(): void;
 }
